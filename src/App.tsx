@@ -66,7 +66,7 @@ const ListaDePublicacoes = () => {
   };  
   return (
     <>
-      <h4>Publicacoes</h4>
+      <h4>Publicações</h4>
       <div>
         <button onClick={escutarCliqueAcessarAPI}>Atualizar publicações</button>
       </div>
@@ -80,10 +80,8 @@ const ListaDePublicacoes = () => {
     </>
   );
 }
-const ItemPublicacao = (props: {titulo: string}) => {
-  return (<li>{props.titulo}</li>
-  <li>{props.titulo}</li>
-  <li>{props.titulo}</li>);
+const ItemPublicacao = (props: {titulo: string}, props: {body: string}) => {
+  return (<li>{props.titulo} {props.body}</li>);
 }
 
 type Usuario = {
@@ -118,22 +116,22 @@ const ListaDeUsuarios = () => {
   };  
   return (
     <>
-      <h4>Publicacoes</h4>
+      <h4>Usuários</h4>
       <div>
-        <button onClick={escutarCliqueAcessarAPI}>Atualizar publicações</button>
+        <button onClick={escutarCliqueAcessarAPI}>Atualizar usuários</button>
       </div>
       <ul>
         {
           usuarios.map((item: Usuario) => {
-            return <ItemUsuario key={item.id} titulo={} />
+            return <ItemUsuario key={item.id} name={item.name} username={item.username} email={item.email} address={item.address} phone={item.phone} website={item.website} company={item.company} />
           })
         }
       </ul>
     </>
   );
 }
-const ItemUsuario = (props: {titulo: string}) => {
-  return (<li>{props.titulo}</li>);
+const ItemUsuario = (props: {name: string}, props: {username: string}, props: {email: string}, props: {address: object}, props: {phone: string}, props: {website: string}, props: {company: object}) => {
+  return (<li>{props.name} - {props.username} - {props.email} - {props.address} - {props.phone} - {props.website} - {props.company}</li>);
 }
 
 type Album = {
@@ -144,11 +142,11 @@ type Album = {
 const ListaDeAlbuns = () => {
   const [albuns, setAlbuns] = useState([]);
   const escutarCliqueAcessarAPI = () => {
-    axios.get("https://jsonplaceholder.typicode.com/users/").then((resposta: AxiosResponse) => {
+    axios.get("https://jsonplaceholder.typicode.com/albums").then((resposta: AxiosResponse) => {
       const albuns = resposta.data.map((album: { id: number; title: string;}) => {
         return {
           id: album.id,
-          titulo: album.title
+          titulo: album.title,
         };
       });
       setAlbuns(albuns);
