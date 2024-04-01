@@ -4,8 +4,30 @@ import "./App.css";
 
 type Tarefa = {
   id: number,
-  titulo: string;
+  titulo: string,
   concluido: boolean;
+};
+
+type Usuario = {
+  id: number,
+  name: string,
+  username: string,
+  email: string,
+  address: object,
+  phone: string,
+  website: string,
+  company: object;
+};
+
+type Publicacao = {
+  id: number,
+  titulo: string,
+  body: string;
+};
+
+type Album = {
+  id: number,
+  titulo: string;
 };
 
 const ListaDeTarefas = () => {
@@ -44,12 +66,6 @@ const ItemTarefa = (props: {titulo: string}) => {
   return (<li>{props.titulo}</li>);
 }
 
-type Publicacao = {
-  id: number,
-  titulo: string,
-  body: string;
-};
-
 const ListaDePublicacoes = () => {
   const [publicacoes, setPublicacoes] = useState([]);
   const escutarCliqueAcessarAPI = () => {
@@ -80,20 +96,9 @@ const ListaDePublicacoes = () => {
     </>
   );
 }
-const ItemPublicacao = (props: {titulo: string}, props: {body: string}) => {
-  return (<li>{props.titulo} {props.body}</li>);
+const ItemPublicacao = (props: {titulo: string; body: string}) => {
+  return (<li>{props.titulo} - {props.body}</li>);
 }
-
-type Usuario = {
-  id: number,
-  name: string,
-  username: string,
-  email: string,
-  address: object,
-  phone: string,
-  website: string,
-  company: object;
-};
 
 const ListaDeUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -130,14 +135,9 @@ const ListaDeUsuarios = () => {
     </>
   );
 }
-const ItemUsuario = (props: {name: string}, props: {username: string}, props: {email: string}, props: {address: object}, props: {phone: string}, props: {website: string}, props: {company: object}) => {
+const ItemUsuario = (props: {name: string; username: string; email: string; address: object; phone: string; website: string; company: object}) => {
   return (<li>{props.name} - {props.username} - {props.email} - {props.address} - {props.phone} - {props.website} - {props.company}</li>);
 }
-
-type Album = {
-  id: number,
-  titulo: string;
-};
 
 const ListaDeAlbuns = () => {
   const [albuns, setAlbuns] = useState([]);
